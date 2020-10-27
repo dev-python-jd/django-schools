@@ -23,6 +23,7 @@
           <th>Student</th>
           <th>Date</th>
           <th>Percentage</th>
+          <th>Passed</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
             <td>{{ taken_quiz.student.user.username }}</td>
             <td>{{ taken_quiz.date|naturaltime }}</td>
             <td>{{ taken_quiz.percentage }}</td>
+            <td>{{ taken_quiz.has_passed|yesno|title }}</td>
           </tr>
         {% endfor %}
       </tbody>

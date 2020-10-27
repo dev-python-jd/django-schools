@@ -26,6 +26,7 @@ class Quiz(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='quizzes')
     name = models.CharField(max_length=255)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='quizzes')
+    percentage_value = models.PositiveIntegerField(default=70)
 
     def __str__(self):
         return self.name
@@ -73,6 +74,10 @@ class TakenQuiz(models.Model):
     score = models.IntegerField()
     percentage = models.FloatField()
     date = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def has_passed(self):
+        return self.percentage > self.quiz.percentage_value
 
 
 class StudentAnswer(models.Model):
